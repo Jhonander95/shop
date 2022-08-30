@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IProduct } from '../interfaces';
+import { IProduct, ICart } from '../interfaces';
+
 
 @Component({
   selector: 'app-product',
@@ -10,6 +11,11 @@ export class ProductComponent implements OnInit {
 
   @Input()
   product!: IProduct;
+  cart!: ICart[];
+
+  /* @Input()
+  product!: IProduct;
+  cart: ICart[] = []; */
 
   constructor() {
     
@@ -21,7 +27,10 @@ export class ProductComponent implements OnInit {
   }
 
   add(): void {
-    localStorage.setItem('cart', JSON.stringify(this.product));
+    this.cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    this.cart.push({name: this.product.name, price: this.product.price, quantity: 1})
+    console.log(this.product);
+    
   }
 
 }

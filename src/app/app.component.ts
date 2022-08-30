@@ -11,12 +11,12 @@ import { ProductComponent } from './product/product.component';
 })
 export class AppComponent implements OnInit {
   title = 'shop';
-  products: IProduct[] | undefined;
-/*   cart: ICart[] = [];
-  show: boolean; */
+  products: IProduct[] = []
+  cart: ICart[] = [];
+  /* show: boolean; */
 
   constructor() {
-    localStorage.setItem('cart', JSON.stringify([]));
+    localStorage.setItem('cart', JSON.stringify([this.cart]));
     /* this.show = false; */
 
     
